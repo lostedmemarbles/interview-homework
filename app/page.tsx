@@ -15,6 +15,7 @@ function onFaveChange(itemId: string, isFave: boolean) {
   shoppingList.items = sortItems(shoppingList.items);
   console.log(shoppingList.items);
   updateList(shoppingList);
+  refreshList(createListItems(shoppingList, onFaveChange));
 }
 function handleNewItem() {
 
@@ -35,9 +36,7 @@ function handleNewItem() {
             {shoppingList.title}
           </h1>
           <div id='list-items' className="max-w-lg text-lg text-pink-600 dark:text-pink-400">
-            <ul>
-              {orderedList}
-                </ul>
+            <ol>{orderedList}</ol>
           </div>
         </div>) : <div className="flex flex-col  gap-2 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold tracking-tight text-black dark:text-pink-200">
@@ -56,12 +55,6 @@ function createListItems(shoppingList: any, onChange: any) {
   return (
     shoppingList.items.map((item) => (
     <ListItem itemName={item.name} isFave={!!item.isFavorite} itemId={item.id} key={item.id} quantity={item.quantity} unit={item.unit} onChangeFave={onChange}/>
-  )));
-}
-function sortListItems(itemList: any) {
-  console.log('SORTING LIST ITEMS');
-  return (itemList.sort((a,b) => (
-    b.checked - a.checked
   )));
 }
 function sortItems(itemList: any) {
