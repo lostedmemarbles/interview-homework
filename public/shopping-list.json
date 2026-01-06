@@ -1,0 +1,111 @@
+{
+  "listId": "grocery-list-1",
+  "title": "Weekly Groceries",
+  "items": [
+    {
+      "id": "item-1",
+      "name": "Milk",
+      "quantity": 1,
+      "unit": "gallon",
+      "isFavorite": 0
+    },
+    {
+      "id": "item-2",
+      "name": "Eggs",
+      "quantity": 12,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-3",
+      "name": "Apples",
+      "quantity": 6,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-4",
+      "name": "Flour",
+      "quantity": 1,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-5",
+      "name": "canned tomatoes",
+      "quantity": 64,
+      "unit": "oz",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-7",
+      "name": "brown sugar",
+      "quantity": 1,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-8",
+      "name": "pears",
+      "quantity": 6,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-9",
+      "name": "almond milk",
+      "quantity": 2,
+      "unit": "quarts",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-10",
+      "name": "Apples",
+      "quantity": 6,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-11",
+      "name": "Eggs",
+      "quantity": 12,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-12",
+      "name": "Apples",
+      "quantity": 6,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-13",
+      "name": "Eggs",
+      "quantity": 12,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-14",
+      "name": "Apples",
+      "quantity": 6,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-15",
+      "name": "Eggs",
+      "quantity": 12,
+      "unit": "count",
+      "isFavorite": 1
+    },
+    {
+      "id": "item-16",
+      "name": "Apples",
+      "quantity": 6,
+      "unit": "count",
+      "isFavorite": 1
+    }
+  ]
+}
