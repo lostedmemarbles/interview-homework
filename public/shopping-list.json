@@ -18,50 +18,50 @@
     },
     {
       "id": "item-3",
-      "name": "Apples",
-      "quantity": 6,
-      "unit": "count",
-      "isFavorite": 1
+      "name": "Flour",
+      "quantity": 1,
+      "unit": "lb",
+      "isFavorite": 0
     },
     {
       "id": "item-4",
-      "name": "Flour",
+      "name": "Baking Soda",
       "quantity": 1,
-      "unit": "count",
-      "isFavorite": 1
+      "unit": "box",
+      "isFavorite": 0
     },
     {
       "id": "item-5",
-      "name": "canned tomatoes",
-      "quantity": 64,
-      "unit": "oz",
-      "isFavorite": 1
+      "name": "Salt",
+      "quantity": 1,
+      "unit": "count",
+      "isFavorite": 0
     },
     {
       "id": "item-7",
-      "name": "brown sugar",
+      "name": "Cornstarch",
       "quantity": 1,
-      "unit": "count",
+      "unit": "box",
       "isFavorite": 1
     },
     {
       "id": "item-8",
-      "name": "pears",
-      "quantity": 6,
-      "unit": "count",
+      "name": "Unsalted Butter",
+      "quantity": 2,
+      "unit": "lb",
       "isFavorite": 1
     },
     {
       "id": "item-9",
-      "name": "almond milk",
-      "quantity": 2,
-      "unit": "quarts",
+      "name": "Brown Sugar",
+      "quantity": 1,
+      "unit": "lb",
       "isFavorite": 1
     },
     {
       "id": "item-10",
-      "name": "Apples",
-      "quantity": 6,
+      "name": "Granulated Sugar",
+      "quantity": 1,
       "unit": "count",
       "isFavorite": 1
     },
@@ -81,30 +81,16 @@
     },
     {
       "id": "item-13",
-      "name": "Eggs",
+      "name": "Vanilla Extract",
       "quantity": 12,
-      "unit": "count",
-      "isFavorite": 1
+      "unit": "oz",
+      "isFavorite": 0
     },
     {
       "id": "item-14",
-      "name": "Apples",
-      "quantity": 6,
-      "unit": "count",
-      "isFavorite": 1
-    },
-    {
-      "id": "item-15",
-      "name": "Eggs",
-      "quantity": 12,
-      "unit": "count",
-      "isFavorite": 1
-    },
-    {
-      "id": "item-16",
-      "name": "Apples",
-      "quantity": 6,
-      "unit": "count",
+      "name": "Hershey Bars",
+      "quantity": 14,
+      "unit": "oz",
       "isFavorite": 1
     }
   ]

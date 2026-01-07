@@ -3,12 +3,10 @@ import Image from "next/image";
 import Form from 'next/form'
 import { getJSONFromFile, saveShoppingList } from './_data-handling/json-handling';
 import ListItem from './_ui/list-item';
+import NewItemForm from './_ui/new-item-form';
 import { useState, useMemo } from 'react';
 
 export default function Home() {
-  const [itemName, setItemName] = useState('');
-  const [quantity, setQuantity] = useState(1);
-  const [unitType, setUnitType] = useState('count');
   const [shoppingList, updateList] = useState(getJSONFromFile());
   const [addingItem, setAddingItem] = useState(false);
   shoppingList.items = sortItems( shoppingList.items);
@@ -17,9 +15,7 @@ export default function Home() {
 }, [shoppingList.items]);
 
 function onFaveChange(itemId: string, isFave: boolean) {
-  console.log('ONCHANGE', itemId, isFave);
   shoppingList.items = sortItems(shoppingList.items);
-  console.log(shoppingList.items);
   updateList(prev => ({
     ...prev,
     items: sortItems(
@@ -31,27 +27,7 @@ function onFaveChange(itemId: string, isFave: boolean) {
     )
   }));
 }
-function handleNewItem(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  var itemId = 'item-'+shoppingList.items.length+1;
-  updateList(prev => {
-    const newItem = {
-      "id": itemId,
-      "name": itemName,
-      "quantity": quantity,
-      "unit": unitType,
-      "isFavorite": 0
-    };
-    return {...prev,
-      items: sortItems([...prev.items, newItem])
-    };
-  });
-  setAddingItem(false);
-}
 function createNewItem() {
-  setItemName('');
-  setQuantity(1);
-  setUnitType('count');
   setAddingItem(true);
 }
   return (
@@ -66,13 +42,25 @@ function createNewItem() {
           priority
         />
         
-        {addingItem ? (<form onSubmit={handleNewItem} className="flex flex-col px-16 py-16 gap-4 bg-pink-300 border-black sm:items-start sm:text-left">
-          <h2>Add New Item</h2>
-          <label className=' px-16' htmlFor='item-name'>Item Name</label><input className='shopping-list-input' type='text' value={itemName} onChange={(e) => setItemName(e.target.value)} required id='item-name' autoFocus></input>
-          <label className=' px-16' htmlFor='item-name'>Quantity</label> <input className='shopping-list-input' type='number' value={quantity} onChange={(e) => setQuantity(e.target.value)} required id='quantity'></input>
-          <label className=' px-16' htmlFor='item-name'>Unit Type</label><input className='shopping-list-input' type='text' value={unitType} onChange={(e) => setUnitType(e.target.value)} required id='unit-type'></input>
-          <button className='justify-center' type='submit'>Add</button>
-          </form>) : ''}
+        {addingItem ? (
+          <NewItemForm 
+          onSubmit={({name, quantity, unit}) => {
+            updateList(prev => {
+              const newItem = {
+                id: 'item-'+shoppingList.items.length+1,
+                name,
+                quantity,
+                unit,
+                isFavorite: 0
+              };
+              return {
+                ...prev,
+                items: sortItems([...prev.items, newItem])
+              };
+            });
+            setAddingItem(false);
+          }}/>
+        ) : ''}
 
          {!!shoppingList ? (
         <div className="flex flex-col  gap-2 text-center sm:items-start sm:text-left">
@@ -116,14 +104,7 @@ function createNewItem() {
     </div>
   );
 }
-function createListItems(shoppingList: any, onChange: any) {
-  return (
-    shoppingList.items.map((item) => (
-    <ListItem itemName={item.name} isFave={!!item.isFavorite} itemId={item.id} key={item.id} quantity={item.quantity} unit={item.unit} onChangeFave={onChange}/>
-  )));
-}
 function sortItems(itemList: any) {
-  console.log('SORTING');
   return (itemList.sort((a,b) => (
     b.isFavorite - a.isFavorite
   )));
