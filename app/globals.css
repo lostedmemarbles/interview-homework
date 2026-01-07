@@ -18,7 +18,19 @@
     --foreground: #4d4d4d;
   }
 }
-
+.shopping-list-input {
+  background-color: azure;
+  color: rgb(0, 0, 0);
+  border: 1px solid rgb(66, 66, 66);
+  border-radius: 5%;
+  padding: 5px;
+}
+button {
+  border: 1px solid rgb(66, 66, 66);
+  width: 10rem;
+  padding: 5px;
+  border-radius: 5%;
+}
 body {
   background: var(--background);
   color: var(--foreground);

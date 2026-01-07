@@ -6,30 +6,24 @@ import ListItem from './_ui/list-item';
 import { useState } from 'react';
 
 export default function Home() {
- var itemName = '';
- var quantity = 1;
- var unitType = '';
-  function setItemName(val: string) {
-    itemName = val;
-  }
-  function setQuantity(val: number) {
-    quantity = val;
-  }
-  function setUnitType(val: string) {
-    unitType = val;
-  }
+  const [itemName, setItemName] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [unitType, setUnitType] = useState('count');
   const [shoppingList, updateList] = useState(getJSONFromFile());
   const [addingItem, setAddingItem] = useState(false);
   shoppingList.items = sortItems( shoppingList.items);
   const [orderedList, refreshList] = useState(createListItems(shoppingList, onFaveChange));
 function onFaveChange(itemId: string, isFave: boolean) {
-  console.log('ONCHANGE', itemId, isFave);
-  shoppingList.items.find(item => item.id == itemId).isFavorite = isFave ? 1 : 0;
-  //saveShoppingList(shoppingList);
-  shoppingList.items = sortItems(shoppingList.items);
-  console.log(shoppingList.items);
-  updateList(shoppingList);
-  refreshList(createListItems(shoppingList, onFaveChange));
+  updateList(prev => ({
+    ...prev,
+    items: sortItems(
+      prev.items.map(item =>
+        item.id === itemId
+          ? { ...item, isFavorite: isFave ? 1 : 0 }
+          : item
+      )
+    )
+  }));
 }
 function handleNewItem(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
@@ -47,10 +41,10 @@ function handleNewItem(e: React.FormEvent<HTMLFormElement>) {
   setAddingItem(false);
 }
 function createNewItem() {
-  setAddingItem(true);
-  setUnitType('');
+  setItemName('');
   setQuantity(1);
-  setUnitType('');
+  setUnitType('count');
+  setAddingItem(true);
 }
   return (
     <div className="flex min-h-screen  justify-center bg-pink-300 font-sans dark:bg-gray-800">
@@ -64,12 +58,12 @@ function createNewItem() {
           priority
         />
         
-        {addingItem ? (<form onSubmit={handleNewItem} className="flex flex-col  gap-2 color-gray-300 border-black sm:items-start sm:text-left">
-          <label htmlFor='item-name'>Item Name</label><input  type='text' onChange={(e) => setItemName(e.target.value)}
-          required id='item-name'></input>
-          <label htmlFor='item-name'>Quantity</label><input type='number' onChange={(e) => setQuantity(e.target.value)} required></input>
-          <label htmlFor='item-name'>Unit Type</label><input  type='text' onChange={(e) => setUnitType(e.target.value)} required id='item-name'></input>
-          <button type='submit'>Add</button>
+        {addingItem ? (<form onSubmit={handleNewItem} className="flex flex-col px-16 py-16 gap-4 bg-pink-300 border-black sm:items-start sm:text-left">
+          <h2>Add New Item</h2>
+          <label className=' px-16' htmlFor='item-name'>Item Name</label><input className='shopping-list-input' type='text' value={itemName} onChange={(e) => setItemName(e.target.value)} required id='item-name' autoFocus></input>
+          <label className=' px-16' htmlFor='item-name'>Quantity</label> <input className='shopping-list-input' type='number' value={quantity} onChange={(e) => setQuantity(e.target.value)} required id='quantity'></input>
+          <label className=' px-16' htmlFor='item-name'>Unit Type</label><input className='shopping-list-input' type='text' value={unitType} onChange={(e) => setUnitType(e.target.value)} required id='unit-type'></input>
+          <button className='justify-center' type='submit'>Add</button>
           </form>) : ''}
 
          {!!shoppingList ? (
@@ -86,8 +80,17 @@ function createNewItem() {
           </h1>
         </div>
         }
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <button onClick={createNewItem}>New Item</button>
+        <div className="flex flex-col gap-1 text-base font-medium sm:flex-row">
+          <button onClick={createNewItem}  className='grid grid-cols-2 '>
+            <Image
+          className="dark:invert gap-1 col-start-1 py-3"
+          src="/plusSign.svg"
+          alt="add item icon"
+          width={40}
+          height={40}
+          priority
+        />
+        <label className='flex col-start-2 py-5'>New Item</label></button>
         </div>
       </main>
     </div>
